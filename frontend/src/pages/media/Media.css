@@ -1,0 +1,36 @@
+.media-container {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-top: 20px;
+}
+
+.media-container-player {
+  width: 100%;
+  width: 100%;
+}
+.media-container-player-list {
+  width: 37%;
+  padding-left: 5px;
+}
+.media-poster {
+  width: 100%;
+  height: 135px;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.media-poster-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.media-poster-row-item {
+  width: 230px;
+  height: 130px;
+  display: flex;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}

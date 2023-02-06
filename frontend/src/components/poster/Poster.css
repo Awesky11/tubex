@@ -1,0 +1,38 @@
+.poster-card {
+  width: 100%;
+  height: 100%;
+  margin: 16px;
+  position: relative;
+}
+
+.poster-card-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    display: flex;
+    transition: transform 0.2s ease-in-out;
+    transform: scale(1.07);
+}
+
+.poster-card-img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.poster-card-play-icon-holder{
+    background-color: rgba(187, 197, 197, 0.449);
+    padding: 6px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.poster-card-play-icon{
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+    
