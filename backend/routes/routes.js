@@ -7,14 +7,14 @@ const {
   updateCategory,
   deleteCategory,
   updateCategoryList
-} = require("./catController");
+} = require("../controllers/catController");
 
 const {
   getVideos,
   setVideos,
   updateVideo,
   deleteVideo,
-} = require("./videoController");
+} = require("../controllers/videoController");
 
 router.route("/cat/").get(getCategories).post(setCategory);
 

@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 
-const VideoModel = require("./videomodel");
+const VideoModel = require("../models/videomodel");
 
 const getVideos = asyncHandler(async (req, res) => {
   const videos = await VideoModel.find();

@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 
-const CatModel = require("./catmodel");
+const CatModel = require("../models/catmodel");
 
 const getCategories = asyncHandler(async (req, res) => {
   const cats = await CatModel.find();

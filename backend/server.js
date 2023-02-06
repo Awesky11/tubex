@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
-const { errorHandler } = require("./middleware");
-const connectDB = require("./db");
+const { errorHandler } = require("./middleware/middleware");
+const connectDB = require("./conn/db");
 const port = process.env.PORT || 6000;
 
 connectDB();
@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", require("./routes"));
+app.use("/api", require("./routes/routes"));
 
 app.use(errorHandler);
 
