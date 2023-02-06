@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./Auth.css";
 import { Link, withRouter } from "react-router-dom";
 //import { login, signup, logout } from "../../redux/auth/AuthSlice";
+import axios from "axios";
 
 import { setAuthData } from "../../redux/home/Actions";
 
@@ -13,15 +14,28 @@ const history = createBrowserHistory();
 const Login = () => {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("1234567890");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (e) => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = { email, password };
-    //dispatch(setAuthData(formData));
-    //history.push("/media");
-    //history.go();
+    // Code to send formData to server
+    try {
+      // make a POST request to the server to upload the data
+      const response = await axios.post("/api/signup", formData);
+      console.log(response.data);
+      // Dispatch the signup action to reset the state
+      // dispatch(uploadVideoData(formData));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -29,24 +43,29 @@ const Login = () => {
       <div className="auth-center-container">
         <form className="auth-form" onSubmit={handleSubmit}>
           <h1>Sign in</h1>
+
           <div className="auth-input-container">
             <input
               type="email"
+              name="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
+          <br />
           <div className="auth-input-container">
             <input
               type="password"
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
             />
           </div>
+          <br />
           <button type="submit">Sign in</button>
         </form>
         <div>

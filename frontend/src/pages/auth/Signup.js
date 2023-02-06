@@ -11,17 +11,24 @@ const Signup = () => {
   //const isLoggedIn = useSelector((state) => state.auth.value);
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState("Awesky");
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("1234567890");
-  const [cpassword, setCPassword] = useState("1234567890");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Code to send formData to server
-    const formData = { username, email, password, cpassword };
+    
     //dispatch(signup(formData));
-    history.push("/");
+   
   };
 
   return (
@@ -32,36 +39,40 @@ const Signup = () => {
           <div className="auth-input-container">
             <input
               type="username"
+              name="username"
               placeholder="Full name"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={formData.username}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="auth-input-container">
             <input
               type="email"
+              name="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="auth-input-container">
             <input
               type="password"
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="auth-input-container">
             <input
               type="password"
+              name="cpassword"
               placeholder="Confirm Password"
-              value={cpassword}
-              onChange={(e) => setCPassword(e.target.value)}
+              value={formData.cpassword}
+              onChange={handleChange}
               required
             />
           </div>
