@@ -6,7 +6,7 @@ const {
   setCategory,
   updateCategory,
   deleteCategory,
-  updateCategoryList
+  updateCategoryList,
 } = require("../controllers/catController");
 
 const {
@@ -16,9 +16,18 @@ const {
   deleteVideo,
 } = require("../controllers/videoController");
 
+const { loginUser, signupUser } = require("../controllers/userContoller");
+
+router.route("/auth/login/").post(loginUser);
+router.route("/auth/signup/").post(signupUser);
+
 router.route("/cat/").get(getCategories).post(setCategory);
 
-router.route("/cat/:id").put(updateCategory).patch(updateCategoryList).delete(deleteCategory);
+router
+  .route("/cat/:id")
+  .put(updateCategory)
+  .patch(updateCategoryList)
+  .delete(deleteCategory);
 
 router.route("/videos/").get(getVideos).post(setVideos);
 
