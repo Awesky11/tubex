@@ -1,34 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-//import { login, signup, logout } from "../../redux/auth/AuthSlice";
 import "./Auth.css";
 
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
+import { useSignup } from "../../redux/auth/useSignup";
 
 const Signup = () => {
-  //const isLoggedIn = useSelector((state) => state.auth.value);
-  const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    cpassword: "",
+    username: "Test",
+    email: "test1@gmail.com",
+    password: "Admin@123",
+    cpassword: "Admin@123",
   });
+  const { signup, isLoading, error } = useSignup();
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Code to send formData to server
-    
-    //dispatch(signup(formData));
-   
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(formData);
   };
 
   return (
@@ -43,7 +35,6 @@ const Signup = () => {
               placeholder="Full name"
               value={formData.username}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="auth-input-container">
@@ -53,7 +44,6 @@ const Signup = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="auth-input-container">
@@ -63,7 +53,6 @@ const Signup = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="auth-input-container">
@@ -73,14 +62,18 @@ const Signup = () => {
               placeholder="Confirm Password"
               value={formData.cpassword}
               onChange={handleChange}
-              required
             />
           </div>
           <span className="auth-span-small">
-            Use 8 or more characters with a mix of letters, numbers & symbols.
+            Use 8 or more characters with at least on caps letter and a mix of
+            letters, numbers & symbols.
           </span>
 
-          <button type="submit">Sign up</button>
+          <button type="submit" disabled={isLoading}>
+            Sign up
+          </button>
+          {isLoading && <div className="loader"></div>}
+          {!isLoading && error && <div className="error">{error}</div>}
         </form>
 
         <div>

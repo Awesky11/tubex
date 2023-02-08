@@ -5,7 +5,6 @@ import { videosAction } from "./VideosSlice";
 const BASE_URL = "http://localhost:3000";
 
 export const fetchCategoryData = () => {
-  
   return async (dispatch) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/cat`);

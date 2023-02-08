@@ -1,11 +1,16 @@
+import React from "react";
 import { createContext, useReducer } from "react";
 
 export const AuthContext = createContext();
 
 export const authReducer = (state, action) => {
-  switch (action.type) {
+  const { type, response } = action;
+  switch (type) {
+    case "SIGNUP":
+      return { user: response };
+
     case "LOGIN":
-      return { user: action.payload };
+      return { user: response };
 
     case "LOGOUT":
       return { user: null };
@@ -15,12 +20,16 @@ export const authReducer = (state, action) => {
   }
 };
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = React.memo(({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
   });
 
   console.log("AuthContext state: ", state);
 
-  return <AuthContext.Provider value={{...state, dispatch}}>{children}</AuthContext.Provider>;
-};
+  return (
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
+});

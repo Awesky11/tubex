@@ -1,11 +1,11 @@
 import { AuthContext } from "./AuthContext";
 import { useContext } from "react";
 
-export const AuthWrapper = () => {
+export const useAuthContext = () => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw Error("AuthWrapper must be inside AuthContextProvider!");
+    throw Error("useAuthContext must be inside AuthContextProvider!");
   }
 
   return context;

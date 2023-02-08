@@ -1,48 +1,43 @@
+/* Style App.js wrapper */
+.container {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
 
-   
-  /* Style App.js wrapper */
-  .container {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-  }
+.container-home {
+  width: 2rem;
+}
 
-  .container-home {
-    width: 2rem;
-  }
-   
-  .container-tab {
-    padding: 1rem;
-    display: flex;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: medium;
-    text-decoration: none;
-    color: aliceblue;
-  }
+.container-tab {
+  padding: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  font-size: medium;
+}
 
-  .container-tab:hover {
-    background: black
-  }
-   
-  .container-tab-selected {
-    background: #39A2DB;
-  }
-   
-  .container-tab-disabled {
-    color:rgb(0, 0, 0);
-    cursor: default;
-  }
-     
-  .container-tab-panel {
-    display: none;
-  }
-   
-  .container-tab-panel-selected {
-    display: block;
-    font-size: 2rem;
-    text-align: center;
-  }
+.container-tab:hover {
+  background: black
+}
+
+.container-tab-selected {
+  background: #39A2DB;
+}
+
+.container-tab-disabled {
+  color: rgb(0, 0, 0);
+  cursor: default;
+}
+
+.container-tab-panel {
+  display: none;
+}
+
+.container-tab-panel-selected {
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+}

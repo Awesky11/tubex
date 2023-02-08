@@ -1,0 +1,35 @@
+.modal {
+  position: absolute;
+  background: rgb(36, 37, 48);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+  z-index: 10000;
+  margin-top: 35px;
+}
+
+.name {
+  color: white;
+  font-size: 18px;
+}
+
+.email {
+  color: white;
+  font-size: 16px;
+}
+
+.user-info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-logout {
+  background-color: #f97e2b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  float: left;
+}

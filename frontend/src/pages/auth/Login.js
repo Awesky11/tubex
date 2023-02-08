@@ -1,23 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import "./Auth.css";
-import { Link, withRouter } from "react-router-dom";
-//import { login, signup, logout } from "../../redux/auth/AuthSlice";
-import axios from "axios";
-
-import { setAuthData } from "../../redux/home/Actions";
-
-import { createBrowserHistory } from "history";
-import { useDispatch, useSelector } from "react-redux";
-
-const history = createBrowserHistory();
+import { Link } from "react-router-dom";
+import { useLogin } from "../../redux/auth/useLogin";
 
 const Login = () => {
-  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const { login, isLoading, error } = useLogin();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,16 +19,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Code to send formData to server
-    try {
-      // make a POST request to the server to upload the data
-      const response = await axios.post("/api/signup", formData);
-      console.log(response.data);
-      // Dispatch the signup action to reset the state
-      // dispatch(uploadVideoData(formData));
-    } catch (error) {
-      console.log(error);
-    }
+    await login(formData);
   };
 
   return (
@@ -51,7 +35,6 @@ const Login = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              required
             />
           </div>
           <br />
@@ -62,11 +45,12 @@ const Login = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              required
             />
           </div>
           <br />
           <button type="submit">Sign in</button>
+          {isLoading && <div className="loader"></div>}
+          {!isLoading && error && <div className="error">{error}</div>}
         </form>
         <div>
           <div className="auth-options">

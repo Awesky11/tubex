@@ -22,9 +22,17 @@ const userSchema = new Schema({
 
 userSchema.statics.login = async function (email, password) {
   if (!email) {
-    throw Error("Incorrect email!");
+    throw Error("Email is required!");
   } else if (!password) {
-    throw Error("Incorrect password!");
+    throw Error("Password is required!");
+  }
+
+  if (!validator.isEmail(email)) {
+    throw Error("Email is not valid!");
+  }
+
+  if (!validator.isStrongPassword(password)) {
+    throw Error("Password is not valid!");
   }
 
   const user = await this.findOne({ email });
