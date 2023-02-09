@@ -16,11 +16,6 @@ const {
   deleteVideo,
 } = require("../controllers/videoController");
 
-const { loginUser, signupUser } = require("../controllers/userContoller");
-
-router.route("/auth/login/").post(loginUser);
-router.route("/auth/signup/").post(signupUser);
-
 router.route("/cat/").get(getCategories).post(setCategory);
 
 router
