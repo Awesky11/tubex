@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./UserModal.css";
 
-const UserModal = ({ user, handleUserModel }) => {
+const UserModal = ({ open, user, handleLogout }) => {
   return (
     <div>
-      {user && user?.username && (
+      {open && user && (
         <div className="modal">
           <ul className="user-info-list">
             <li>
-              <p className="name">{user?.username}</p>
+              <p className="name">{"John Sins"}</p>
             </li>
             <li>
-              <p className="email">{user?.token}</p>
+              <p className="email">{"johnsins@outlook.com"}</p>
             </li>
             <li>
-              <button onClick={handleUserModel} className="btn-logout">
+              <button onClick={handleLogout} className="btn-logout">
                 Logout
               </button>
             </li>

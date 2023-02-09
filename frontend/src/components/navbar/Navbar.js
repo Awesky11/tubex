@@ -8,38 +8,49 @@ import { createBrowserHistory } from "history";
 import UserModal from "../usermodel/UserModal";
 
 import Search from "../search/Search";
+import { useLogout } from "../../redux/auth/useLogout";
 
 const history = createBrowserHistory();
 
 const Navbar = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+  const [open, setOpen] = useState(false);
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+    setOpen(!open);
+  };
 
   const handleUserModel = () => {
     const userData = JSON.stringify(localStorage.getItem("user"));
     const user = JSON.parse(userData);
-    console.log(user);
 
     setUser(user);
     if (!user) {
       history.push("/login");
       history.go();
+    } else {
+      setOpen(!open);
     }
   };
 
   return (
-    <div className="container">
-      <Link className="container-tab" to="/">
-        <img src={Home} className="container-home" />
-      </Link>
+    <header className="header">
+      <nav className="navbar">
+        <Link className="navbar-tab" to="/">
+          <img src={Home} className="navbar-home" />
+        </Link>
 
-      <Search />
+        <Search />
 
-      <UserModal user={user} handleUserModel={handleUserModel} />
+        <UserModal open={open} user={user} handleLogout={handleLogout} />
 
-      <div className="container-tab" onClick={handleUserModel}>
-        <img src={User} className="container-home" />
-      </div>
-    </div>
+        <div className="navbar-tab" onClick={handleUserModel}>
+          <img src={User} className="navbar-home" />
+        </div>
+      </nav>
+    </header>
   );
 };
 
