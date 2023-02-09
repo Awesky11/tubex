@@ -9,7 +9,6 @@ const Signup = () => {
     username: "Test",
     email: "test1@gmail.com",
     password: "Admin@123",
-    cpassword: "Admin@123",
   });
   const { signup, isLoading, error } = useSignup();
 
@@ -32,7 +31,7 @@ const Signup = () => {
             <input
               type="username"
               name="username"
-              placeholder="Full name"
+              placeholder="User name"
               value={formData.username}
               onChange={handleChange}
             />
@@ -41,7 +40,7 @@ const Signup = () => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Email-Id"
               value={formData.email}
               onChange={handleChange}
             />
@@ -55,17 +54,8 @@ const Signup = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="auth-input-container">
-            <input
-              type="password"
-              name="cpassword"
-              placeholder="Confirm Password"
-              value={formData.cpassword}
-              onChange={handleChange}
-            />
-          </div>
           <span className="auth-span-small">
-            Use 8 or more characters with at least on caps letter and a mix of
+            Use 8 or more characters with at least one caps letter and a mix of
             letters, numbers & symbols.
           </span>
 

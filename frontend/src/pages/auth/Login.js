@@ -32,7 +32,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Email-Id"
               value={formData.email}
               onChange={handleChange}
             />

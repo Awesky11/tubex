@@ -1,5 +1,5 @@
 .auth-container {
- margin: 100px;
+  margin: 100px;
 }
 
 .auth-center-container {
@@ -20,6 +20,7 @@
 
 .auth-input-container {
   width: 100%;
+  margin-top: 12px;
 }
 
 .auth-form input {
@@ -103,6 +104,6 @@ input.error {
 .auth-span-small {
   color: aliceblue;
   font-size: smaller;
-  margin-top: 6px;
+  margin-top: 10px;
   margin-left: 10px;
 }
