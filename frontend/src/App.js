@@ -11,7 +11,7 @@ import Signup from "./pages/auth/Signup";
 import AdminPanel from "./pages/admin/AdminPanel";
 import Navbar from "./components/navbar/Navbar";
 
-import { fetchCategoryData, fetchPopularVideos } from "./redux/home/Actions";
+import { fetchCategoryData, fetchPopularVideos } from "./redux/actions/Actions";
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 

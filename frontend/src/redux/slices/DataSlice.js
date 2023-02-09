@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import reducer from "./DataReducer";
+import reducer from "../reducers/DataReducer";
 
 const initialState = {
   data: [],

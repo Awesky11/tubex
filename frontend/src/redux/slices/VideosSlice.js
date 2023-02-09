@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import reducer from "./VideoReducer";
+import reducer from "../reducers/VideoReducer";
 
 const initialState = {
   videos: [],

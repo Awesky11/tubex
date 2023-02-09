@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Auth.css";
 import { Link } from "react-router-dom";
-import { useLogin } from "../../redux/auth/useLogin";
+import { useLogin } from "../../redux/hooks/useLogin";
 
 const Login = () => {
 

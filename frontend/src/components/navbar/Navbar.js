@@ -8,7 +8,7 @@ import { createBrowserHistory } from "history";
 import UserModal from "../usermodel/UserModal";
 
 import Search from "../search/Search";
-import { useLogout } from "../../redux/auth/useLogout";
+import { useLogout } from "../../redux/hooks/useLogout";
 
 const history = createBrowserHistory();
 

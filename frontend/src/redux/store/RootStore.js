@@ -1,8 +1,8 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
 
-import { dataReducer } from "./DataSlice";
-import { videoReducer } from "./VideosSlice";
+import { dataReducer } from "../slices/DataSlice";
+import { videoReducer } from "../slices/VideosSlice";
 
 const store = configureStore({
   reducer: {

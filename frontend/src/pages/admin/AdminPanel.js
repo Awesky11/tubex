@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import "./AdminPanel.css";
-import axios from "axios";
-
-import { useDispatch } from "react-redux";
-//import { uploadVideoData } from "../../redux/auth/AuthSlice";
 
 import InputDropdown from "../../components/dropdown/InputDropdown";
 
@@ -24,7 +20,6 @@ function AdminPanel() {
     category: "",
   });
 
-  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,16 +33,7 @@ function AdminPanel() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Code to send formData to server
-    try {
-      // make a POST request to the server to upload the data
-      const response = await axios.post("/api/signup", formData);
-      console.log(response.data);
-      // Dispatch the signup action to reset the state
-     // dispatch(uploadVideoData(formData));
-    } catch (error) {
-      console.log(error);
-    }
+    
   };
 
   return (

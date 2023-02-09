@@ -1,6 +1,6 @@
 import axios from "axios";
-import { dataAction } from "./DataSlice";
-import { videosAction } from "./VideosSlice";
+import { dataAction } from "../slices/DataSlice";
+import { videosAction } from "../slices/VideosSlice";
 
 const BASE_URL = "http://localhost:3000";
 

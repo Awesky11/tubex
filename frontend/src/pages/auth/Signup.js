@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Auth.css";
 
-import { useSignup } from "../../redux/auth/useSignup";
+import { useSignup } from "../../redux/hooks/useSignup";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

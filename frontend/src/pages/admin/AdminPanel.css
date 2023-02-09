@@ -1,6 +1,5 @@
 .admin-panel-container {
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;

@@ -22,7 +22,7 @@ app.use(errorHandler);
 
 app.use("/api", require("./routes/authRoutes"));
 
-app.use(requireAuth);
+//app.use(requireAuth);
 
 app.use("/api", require("./routes/videosRoutes"));
 
