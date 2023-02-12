@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "./AdminPanel.css";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import InputDropdown from "../../components/dropdown/InputDropdown";
+import { updateCategoryData } from "../../redux/actions/Actions";
 
-function AdminPanel() {
-  const [formData, setFormData] = useState({
+import { useVideoUpload } from "../../redux/hooks/useVideoUpload";
+
+import Alert from "react-bootstrap/Alert";
+import Success from "../../assets/svgs/success.svg";
+import Error from "../../assets/svgs/error.svg";
+
+const AdminPanel = React.memo(() => {
+  const initialFormState = {
     description: "",
     source: "",
     subtitle: "",
     thumb: "",
     title: "",
-    catId: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormState);
 
-  const dispatch = useDispatch();
+  const [catId, setCatId] = useState("");
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const { uploadVideo, isLoading, error } = useVideoUpload();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,18 +34,20 @@ function AdminPanel() {
   };
 
   const setSelectedOption = (category) => {
-    setFormData({ ...formData, catId: category._id });
+    setCatId(category._id);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(formData);
+    const result = await uploadVideo(formData, catId);
+    if (result) {
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+       // setFormData(initialFormState);
+      }, 2000);
+    }
   };
-
-  useEffect(() => {
-    // dispatch({ type: "" });
-  }, []);
 
   const store = useSelector((state) => state);
 
@@ -45,7 +58,7 @@ function AdminPanel() {
   return (
     <div>
       <div className="admin-panel-center-container">
-        <form className="admin-panel-form" onSubmit={handleSubmit}>
+        <form inline className="admin-panel-form" onSubmit={handleSubmit}>
           <label>
             Video Title:
             <div className="admin-panel-form-input-container">
@@ -58,7 +71,7 @@ function AdminPanel() {
               />
             </div>
           </label>
-          <br />
+
           <label>
             Video Subtitle:
             <div className="admin-panel-form-input-container">
@@ -71,7 +84,7 @@ function AdminPanel() {
               />
             </div>
           </label>
-          <br />
+
           <label>
             Video Thumbnail:
             <div className="admin-panel-form-input-container">
@@ -84,7 +97,7 @@ function AdminPanel() {
               />
             </div>
           </label>
-          <br />
+
           <label>
             Video Source's Url:
             <div className="admin-panel-form-input-container">
@@ -97,7 +110,7 @@ function AdminPanel() {
               />
             </div>
           </label>
-          <br />
+
           <label>Choose a category:</label>
           <div className="admin-panel-form-input-container">
             <InputDropdown
@@ -106,7 +119,7 @@ function AdminPanel() {
             />
           </div>
 
-          <br />
+          <label />
           <label>
             Video Description:
             <div className="admin-panel-form-input-container">
@@ -120,10 +133,29 @@ function AdminPanel() {
           </label>
           <br />
           <button type="submit">Submit</button>
+          {isLoading && <div className="loader"></div>}
+          {!isLoading && error && (
+            <Alert key={"danger"} variant={"danger"}>
+              <span>
+                <img src={Error} className="icon" />
+              </span>
+              {error}
+            </Alert>
+          )}
+          {!isLoading && !error && showSuccess && (
+            <>
+              <Alert key={"success"} variant={"success"}>
+                <span>
+                  <img src={Success} className="icon" />
+                </span>
+                Successfully Uploaded!
+              </Alert>
+            </>
+          )}
         </form>
       </div>
     </div>
   );
-}
+});
 
 export default AdminPanel;

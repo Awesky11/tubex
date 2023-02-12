@@ -9,16 +9,20 @@ const MovieCards = ({ movies, loading, error }) => {
     <div>
       {movies.map((item, i) => (
         <div key={i}>
-          <h3 className="movie-card-heading">{item.label}</h3>
-          <div className="movie-cards-container">
-            {item.data.map((movie, j) => (
-              <div key={j}>
-                <div className="movie-card-poster">
-                  <Poster movie={movie} />
-                </div>
+          {item.data.length > 0 && (
+            <>
+              <h3 className="movie-card-heading">{item.label}</h3>
+              <div className="movie-cards-container">
+                {item.data.map((movie, j) => (
+                  <div key={j}>
+                    <div className="movie-card-poster">
+                      <Poster movie={movie} />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
       ))}
     </div>

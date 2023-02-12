@@ -11,14 +11,15 @@ const customStyles = {
   }),
 };
 
-const InputDropdown = ({ options, setSelectedOption }) => {
+const InputDropdown = React.memo(({ options, setSelectedOption }) => {
   return (
     <Select
       onChange={setSelectedOption}
       options={options}
       styles={customStyles}
+      required
     />
   );
-};
+});
 
 export default InputDropdown;

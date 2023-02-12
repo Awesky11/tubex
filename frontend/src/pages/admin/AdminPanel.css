@@ -2,7 +2,9 @@
   background-color: rgb(10, 10, 10);
   padding: 50px;
   border-radius: 10px;
-  max-width: 400px;
+  max-width: 500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .admin-panel-form {
@@ -71,11 +73,17 @@ label {
 
 textarea {
   width: 380px;
-  height: 100px;
+  height: 120px;
   padding: 12px;
   margin-top: 12px;
   font-size: 16px;
   font-size: 16px;
   border: none;
   border-radius: 4px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }

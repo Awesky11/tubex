@@ -13,9 +13,15 @@ const setCategory = asyncHandler(async (req, res) => {
     throw new Error("Please add a category name!");
   }
 
-  const cat = await CatModel.create(req.body);
+  const value = req.body.value;
+  const exists = await CatModel.findOne({ value });
 
-  res.status(200).json(cat);
+  if (exists) {
+    res.status(200).json({ message: "This Category Already Exists!" });
+  } else {
+    const cat = await CatModel.create(req.body);
+    res.status(200).json(cat);
+  }
 });
 
 const updateCategory = asyncHandler(async (req, res) => {
