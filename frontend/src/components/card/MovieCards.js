@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MovieCards.css";
-import Poster from "../poster/Poster";
+import {PosterMain} from "../poster/Poster";
 import Shimmer from "../shimmer/Shimmer";
 
 const MovieCards = ({ movies, loading, error }) => {
@@ -16,7 +16,7 @@ const MovieCards = ({ movies, loading, error }) => {
                 {item.data.map((movie, j) => (
                   <div key={j}>
                     <div className="movie-card-poster">
-                      <Poster movie={movie} />
+                      <PosterMain movie={movie} />
                     </div>
                   </div>
                 ))}

@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import "./Media.css";
 import { useLocation } from "react-router-dom";
 import Player from "../../components/player/Player";
-import Poster from "../../components/poster/Poster";
+import {PosterMain} from "../../components/poster/Poster";
 
 import { useSelector } from "react-redux";
 
@@ -27,7 +27,7 @@ const Media = (props) => {
             {videos.map((movie, j) => (
               <div key={j}>
                 <div className="media-poster-row-item">
-                  <Poster movie={movie} />
+                  <PosterMain movie={movie} />
                 </div>
               </div>
             ))}

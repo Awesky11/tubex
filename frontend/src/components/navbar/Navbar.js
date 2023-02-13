@@ -4,12 +4,12 @@ import Home from "../../assets/svgs/home.svg";
 import User from "../../assets/svgs/user.svg";
 
 import { Link, Navigate } from "react-router-dom";
-import { createBrowserHistory } from "history";
 import UserModal from "../usermodel/UserModal";
 
 import Search from "../search/Search";
 import { useLogout } from "../../redux/hooks/useLogout";
 
+import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
 
 const Navbar = () => {

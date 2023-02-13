@@ -9,6 +9,9 @@ const userSchema = new Schema({
     type: String,
     required: [true, "User Name required!"],
   },
+  userType: {
+    type: String,
+  },
   email: {
     type: String,
     required: [true, "Email required!"],
@@ -77,7 +80,13 @@ userSchema.statics.signup = async function (username, email, password) {
 
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ username, email, password: hash });
+  if (email === "admin@tubex.com") {
+    userType = "admin";
+  } else {
+    userType = "user";
+  }
+
+  const user = await this.create({ username, email, password: hash, userType });
 
   return user;
 };

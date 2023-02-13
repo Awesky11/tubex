@@ -1,6 +1,6 @@
 import React from "react";
 import "./MovieCards";
-import Poster from "../poster/Poster";
+import {PosterMain} from "../poster/Poster";
 import Shimmer from "../shimmer/Shimmer";
 
 const VideoCards = ({ videos, error, loading }) => {
@@ -13,7 +13,7 @@ const VideoCards = ({ videos, error, loading }) => {
         {videos.map((movie, j) => (
           <div key={j}>
             <div className="home-poster-row-item">
-              <Poster movie={movie} />
+              <PosterMain movie={movie} />
             </div>
           </div>
         ))}

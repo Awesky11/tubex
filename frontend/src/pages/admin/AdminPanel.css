@@ -1,10 +1,15 @@
 .admin-panel-center-container {
   background-color: rgb(10, 10, 10);
-  padding: 50px;
   border-radius: 10px;
   max-width: 500px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.span-img {
+  display: flex;
+  justify-content: end;
+  padding-top: 10px;
 }
 
 .admin-panel-form {
@@ -12,6 +17,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 50px;
 }
 
 .admin-panel-form-input-container {
@@ -82,8 +88,3 @@ textarea {
   border-radius: 4px;
 }
 
-.icon {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}

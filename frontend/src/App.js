@@ -15,6 +15,10 @@ import { fetchCategoryData, fetchPopularVideos } from "./redux/actions/Actions";
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
 
@@ -42,26 +46,39 @@ const App = () => {
     <div className="app">
       <Router>
         <Navbar />
-        <main>
-          <Fragment>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path="media" element={<Media />} />
-              <Route path="admin" element={<AdminPanel />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="error" element={<Error />} />
-              <Route path="viewall" element={<ViewAll />} />
-              <Route path="terms" element={<Terms />} />
-            </Routes>
-          </Fragment>
-        </main>
-        <footer>
-          <div>
-            <p>Copyright © {new Date().getFullYear()} tubeX </p>
-            <Link to={`/terms`}>Term & Conditions</Link>
-          </div>
-        </footer>
+        <Container fluid="md">
+          <Row>
+            <Col>
+              <main>
+                <Fragment>
+                  <Routes>
+                    <Route exact path="/" element={<Home />} />
+                    <Route path="media" element={<Media />} />
+                    <Route path="admin" element={<AdminPanel />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="signup" element={<Signup />} />
+                    <Route path="error" element={<Error />} />
+                    <Route path="viewall" element={<ViewAll />} />
+                    <Route path="terms" element={<Terms />} />
+                  </Routes>
+                </Fragment>
+              </main>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <footer>
+                <div>
+                  <br />
+                  <br />
+                  <hr style={{ color: "orange", width: "100%" }}></hr>
+                  <p>Copyright © {new Date().getFullYear()} tubeX </p>
+                  <Link to={`/terms`}>Term & Conditions</Link>
+                </div>
+              </footer>
+            </Col>
+          </Row>
+        </Container>
       </Router>
     </div>
   );

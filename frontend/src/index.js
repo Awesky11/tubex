@@ -12,13 +12,21 @@ import store from "./redux/store/RootStore";
 import { AuthContextProvider } from "./redux/context/AuthContext";
 import { UploadContextProvider } from "./redux/context/UploadContext";
 
+import ThemeProvider from "react-bootstrap/ThemeProvider";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthContextProvider>
         <UploadContextProvider>
-          <App />
+          <ThemeProvider
+            breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+            minBreakpoint="xxs"
+          >
+            <App />
+          </ThemeProvider>
+          ;
         </UploadContextProvider>
       </AuthContextProvider>
     </Provider>

@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./Auth.css";
 
 import { useSignup } from "../../redux/hooks/useSignup";
+import { AlertMessage } from "../../components/common/Common";
+import Error from "../../assets/svgs/error.svg";
+import Cross from "../../assets/svgs/cross.svg";
+import { createBrowserHistory } from "history";
+const history = createBrowserHistory();
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +27,17 @@ const Signup = () => {
     await signup(formData);
   };
 
+  const handleClose = () => {
+    history.push("/");
+    history.go();
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-center-container">
+        <span className="span-img">
+          <img src={Cross} className="icon" onClick={handleClose} />
+        </span>
         <form className="auth-form" onSubmit={handleSubmit}>
           <h1>Create your new Account</h1>
           <div className="auth-input-container">
@@ -63,7 +76,11 @@ const Signup = () => {
             Sign up
           </button>
           {isLoading && <div className="loader"></div>}
-          {!isLoading && error && <div className="error">{error}</div>}
+          {!isLoading && error && (
+            <>
+              <AlertMessage message={error} variant={"danger"} source={Error} />
+            </>
+          )}
         </form>
 
         <div>

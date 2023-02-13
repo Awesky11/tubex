@@ -1,5 +1,5 @@
 import React from "react";
-import Poster from "../../components/poster/Poster";
+import {PosterMain} from "../../components/poster/Poster";
 import "./ViewAll.css";
 
 import Shimmer from "../../components/shimmer/Shimmer";
@@ -24,7 +24,7 @@ const ViewAll = () => {
       {videos.flat().map((movie, j) => (
         <div key={j}>
           <div className="home-poster-row-item">
-            <Poster movie={movie} />
+            <PosterMain movie={movie} />
           </div>
         </div>
       ))}

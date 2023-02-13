@@ -8,9 +8,14 @@ import { updateCategoryData } from "../../redux/actions/Actions";
 
 import { useVideoUpload } from "../../redux/hooks/useVideoUpload";
 
-import Alert from "react-bootstrap/Alert";
 import Success from "../../assets/svgs/success.svg";
 import Error from "../../assets/svgs/error.svg";
+import Cross from "../../assets/svgs/cross.svg";
+
+import { AlertMessage } from "../../components/common/Common";
+
+import { createBrowserHistory } from "history";
+const history = createBrowserHistory();
 
 const AdminPanel = React.memo(() => {
   const initialFormState = {
@@ -44,7 +49,7 @@ const AdminPanel = React.memo(() => {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-       // setFormData(initialFormState);
+        // setFormData(initialFormState);
       }, 2000);
     }
   };
@@ -55,9 +60,17 @@ const AdminPanel = React.memo(() => {
     dataStore: { data, dataError, dataLoading },
   } = store;
 
+  const handleClose = () => {
+    history.push("/");
+    history.go();
+  };
+
   return (
     <div>
       <div className="admin-panel-center-container">
+        <span className="span-img">
+          <img src={Cross} className="icon" onClick={handleClose} />
+        </span>
         <form inline className="admin-panel-form" onSubmit={handleSubmit}>
           <label>
             Video Title:
@@ -135,22 +148,14 @@ const AdminPanel = React.memo(() => {
           <button type="submit">Submit</button>
           {isLoading && <div className="loader"></div>}
           {!isLoading && error && (
-            <Alert key={"danger"} variant={"danger"}>
-              <span>
-                <img src={Error} className="icon" />
-              </span>
-              {error}
-            </Alert>
+            <AlertMessage message={error} variant={"danger"} source={Error} />
           )}
           {!isLoading && !error && showSuccess && (
-            <>
-              <Alert key={"success"} variant={"success"}>
-                <span>
-                  <img src={Success} className="icon" />
-                </span>
-                Successfully Uploaded!
-              </Alert>
-            </>
+            <AlertMessage
+              message="Successfully Uploaded!"
+              variant={"success"}
+              source={Success}
+            />
           )}
         </form>
       </div>

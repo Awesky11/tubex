@@ -1,6 +1,5 @@
 body {
-  display: table;
-  margin: auto;
+  margin: 0 auto;
   background-color: rgb(26, 27, 41);
   overflow-x: hidden;
 }

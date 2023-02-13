@@ -1,4 +1,4 @@
-@media only screen and (max-width: 578px) {
+/* @media only screen and (max-width: 578px) {
   .app {
     max-width: 578px;
     margin-left: 25px;
@@ -10,7 +10,7 @@
   .app {
     max-width: 1200px;
   }
-}
+} */
 
 .app {
   overflow: scroll;
