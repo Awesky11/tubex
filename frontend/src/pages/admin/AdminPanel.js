@@ -4,7 +4,6 @@ import "./AdminPanel.css";
 import { useSelector } from "react-redux";
 
 import InputDropdown from "../../components/dropdown/InputDropdown";
-import { updateCategoryData } from "../../redux/actions/Actions";
 
 import { useVideoUpload } from "../../redux/hooks/useVideoUpload";
 
@@ -56,9 +55,12 @@ const AdminPanel = React.memo(() => {
 
   const store = useSelector((state) => state);
 
-  const {
-    dataStore: { data, dataError, dataLoading },
-  } = store;
+  const categories = [
+    { label: "TOP VIDEOS", value: "top" },
+    { label: "FEATURED", value: "featured" },
+    { label: "LATEST HITS", value: "latest" },
+    { label: "OTHERS", value: "other" },
+  ];
 
   const handleClose = () => {
     history.push("/");
@@ -66,7 +68,7 @@ const AdminPanel = React.memo(() => {
   };
 
   return (
-    <div>
+    <div className="admin-panel-container">
       <div className="admin-panel-center-container">
         <span className="span-img">
           <img src={Cross} className="icon" onClick={handleClose} />
@@ -128,7 +130,7 @@ const AdminPanel = React.memo(() => {
           <div className="admin-panel-form-input-container">
             <InputDropdown
               setSelectedOption={setSelectedOption}
-              options={data}
+              options={categories}
             />
           </div>
 

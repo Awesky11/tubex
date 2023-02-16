@@ -9,9 +9,7 @@ import { useSelector } from "react-redux";
 const Media = (props) => {
   const store = useSelector((state) => state);
 
-  const {
-    videosStore: { videos, error, loading },
-  } = store;
+  const videos = []
 
   const location = useLocation();
   const data = location?.state?.data;
