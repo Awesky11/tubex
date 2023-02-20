@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 import { useSignup } from "../../redux/hooks/useSignup";
 import { AlertMessage } from "../../components/common/Common";
 import Error from "../../assets/svgs/error.svg";
 import Cross from "../../assets/svgs/cross.svg";
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +14,8 @@ const Signup = () => {
     password: "Admin@123",
   });
   const { signup, isLoading, error } = useSignup();
+
+  const navigate = useNavigate();
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
@@ -28,8 +28,7 @@ const Signup = () => {
   };
 
   const handleClose = () => {
-    history.push("/");
-    history.go();
+    navigate("/");
   };
 
   return (

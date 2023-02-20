@@ -9,15 +9,15 @@ export const fetchTopVideos = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/cat`);
-      //console.log("HOME->", response);
+      console.log("fetchTopVideos->", response);
       dispatch(
         topAction.fetchVideos({
-          type: "SUCCESS",
+          type: "TOP_SUCCESS",
           response: response.data,
         })
       );
     } catch (error) {
-      dispatch(topAction.fetchVideos({ type: "ERROR", response: error }));
+      dispatch(topAction.fetchVideos({ type: "TOP_ERROR", response: error }));
     }
   };
 };
@@ -26,17 +26,17 @@ export const fetchFeatureVideos = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/videos`);
-      //console.log("ACTIONS- >", response);
+      console.log("fetchFeatureVideos- >", response);
       dispatch(
         featureAction.fetchVideos({
-          type: "SUCCESS",
+          type: "FEATURE_SUCCESS",
           response: response.data,
         })
       );
     } catch (error) {
       dispatch(
         featureAction.fetchVideos({
-          type: "ERROR",
+          type: "FEATURE_ERROR",
           response: error,
         })
       );
@@ -48,17 +48,17 @@ export const fetchLatestVideos = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/videos`);
-      //console.log("ACTIONS- >", response);
+      console.log("fetchLatestVideos- >", response);
       dispatch(
         latestAction.fetchVideos({
-          type: "SUCCESS",
+          type: "LATEST_SUCCESS",
           response: response.data,
         })
       );
     } catch (error) {
       dispatch(
         latestAction.fetchVideos({
-          type: "ERROR",
+          type: "LATEST_ERROR",
           response: error,
         })
       );

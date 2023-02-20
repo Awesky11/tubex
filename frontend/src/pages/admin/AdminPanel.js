@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AdminPanel.css";
 
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import InputDropdown from "../../components/dropdown/InputDropdown";
 
@@ -13,9 +14,6 @@ import Cross from "../../assets/svgs/cross.svg";
 
 import { AlertMessage } from "../../components/common/Common";
 
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
-
 const AdminPanel = React.memo(() => {
   const initialFormState = {
     description: "",
@@ -26,11 +24,13 @@ const AdminPanel = React.memo(() => {
   };
   const [formData, setFormData] = useState(initialFormState);
 
-  const [catId, setCatId] = useState("");
+  const [slug, setCatSlug] = useState("");
 
   const [showSuccess, setShowSuccess] = useState(false);
 
   const { uploadVideo, isLoading, error } = useVideoUpload();
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,12 +38,12 @@ const AdminPanel = React.memo(() => {
   };
 
   const setSelectedOption = (category) => {
-    setCatId(category._id);
+    setCatSlug(category.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await uploadVideo(formData, catId);
+    const result = await uploadVideo(formData, slug);
     if (result) {
       setShowSuccess(true);
       setTimeout(() => {
@@ -56,19 +56,24 @@ const AdminPanel = React.memo(() => {
   const store = useSelector((state) => state);
 
   const categories = [
-    { label: "TOP VIDEOS", value: "top" },
-    { label: "FEATURED", value: "featured" },
-    { label: "LATEST HITS", value: "latest" },
-    { label: "OTHERS", value: "other" },
+    { title: "TOP VIDEOS", slug: "top" },
+    { title: "FEATURED", slug: "featured" },
+    { title: "LATEST HITS", slug: "latest" },
+    { title: "OTHERS", slug: "others" },
   ];
 
   const handleClose = () => {
-    history.push("/");
-    history.go();
+    navigate("/");
   };
+  const arr = [1, 2, 3, 4];
 
   return (
     <div className="admin-panel-container">
+      <div>
+        {categories.map((item, index) => {
+          return <h1 key={index}>{item.label}</h1>;
+        })}
+      </div>
       <div className="admin-panel-center-container">
         <span className="span-img">
           <img src={Cross} className="icon" onClick={handleClose} />

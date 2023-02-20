@@ -9,8 +9,8 @@ const getVideos = asyncHandler(async (req, res) => {
 
 const setVideos = asyncHandler(async (req, res) => {
   if (!req.body) {
-    res.status(400);
-    throw new Error("Please add all filed!");
+    res.status(400).json({ message: "Please add all filed!" });
+    return;
   }
 
   const video = await VideoModel.create(req.body);
@@ -22,8 +22,8 @@ const updateVideo = asyncHandler(async (req, res) => {
   const video = await VideoModel.findById(req.params.id);
 
   if (!video) {
-    res.status(400);
-    throw new Error("Video not found!");
+    res.status(400).json({ message: "Video not found!" });
+    return;
   }
 
   const updateVideo = await VideoModel.findByIdAndUpdate(
@@ -39,8 +39,8 @@ const deleteVideo = asyncHandler(async (req, res) => {
   const video = await VideoModel.findById(req.params.id);
 
   if (!video) {
-    res.status(400);
-    throw new Error("Video not found!");
+    res.status(400).json({ message: "Video not found!" });
+    return;
   }
 
   res.status(200).json(await video.remove());

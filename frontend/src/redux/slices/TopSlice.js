@@ -14,11 +14,11 @@ const topSlice = createSlice({
     fetchVideos: (state, action) => {
       const { type, response } = action.payload;
       switch (type) {
-        case "SUCCESS":
+        case "TOP_SUCCESS":
           return { ...state, top: response, topLoading: false };
-        case "ERROR":
+        case "TOP_ERROR":
           return { ...state, topError: response, topLoading: false };
-        case "LOADING":
+        case "TOP_LOADING":
           return { ...state, topLoading: true };
         default:
           return state;

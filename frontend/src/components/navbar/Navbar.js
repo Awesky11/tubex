@@ -3,19 +3,18 @@ import "./Navbar.css";
 import Home from "../../assets/svgs/home.svg";
 import User from "../../assets/svgs/user.svg";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserModal from "../usermodel/UserModal";
 
 import Search from "../search/Search";
 import { useLogout } from "../../redux/hooks/useLogout";
 
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
-
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const { logout } = useLogout();
+
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
@@ -28,8 +27,7 @@ const Navbar = () => {
 
     setUser(user);
     if (!user) {
-      history.push("/login");
-      history.go();
+      navigate("/login");
     } else {
       setOpen(!open);
     }

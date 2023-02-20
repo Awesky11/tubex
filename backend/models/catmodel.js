@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const category = new Schema({
-  value: {
+  slug: {
     type: String,
   },
-  label: {
+  title: {
     type: String,
     required: [true, "Category Name required!"],
   },

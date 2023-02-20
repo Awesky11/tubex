@@ -8,7 +8,7 @@ export const useVideoUpload = () => {
   const [isLoading, setLoading] = useState(null);
   const { dispatch } = useUploadContext();
 
-  const uploadVideo = async (formData, id) => {
+  const uploadVideo = async (formData, slug) => {
     function isImgLink(url) {
       if (typeof url !== "string") return false;
       return !!url.match(/\w+\.(jpg|jpeg|gif|png|tiff|bmp)$/gi);
@@ -36,7 +36,7 @@ export const useVideoUpload = () => {
       setLoading(false);
       setError("Video source url required!");
       return;
-    } else if (id == "" || undefined) {
+    } else if (slug == "" || undefined) {
       setLoading(false);
       setError("Choose a category!");
       return;
@@ -60,7 +60,7 @@ export const useVideoUpload = () => {
 
       const response = await axios({
         method: "PATCH",
-        url: `${BASE_URL}/api/cat/${id}`,
+        url: `${BASE_URL}/api/cat/${slug}`,
         headers: {
           "Content-Type": "application/json",
           //Authorization: "Bearer " + token,
@@ -76,7 +76,6 @@ export const useVideoUpload = () => {
         setLoading(false);
         setError(response.data.error);
       }
-
     } catch (error) {
       setLoading(false);
       setError(error.response.data.error);

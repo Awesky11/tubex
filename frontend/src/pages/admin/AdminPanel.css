@@ -1,6 +1,6 @@
 .admin-panel-container {
   display: flex;
-  justify-content: center;
+  justify-content:space-between;
   padding-top: 2%;
   padding-bottom: 2%;
 }

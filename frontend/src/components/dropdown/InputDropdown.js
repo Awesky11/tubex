@@ -12,10 +12,16 @@ const customStyles = {
 };
 
 const InputDropdown = React.memo(({ options, setSelectedOption }) => {
+  const newOptions = [];
+
+  options.map((item, index) => {
+    newOptions.push({ label: item.title, value: item.slug });
+  });
+
   return (
     <Select
       onChange={setSelectedOption}
-      options={options}
+      options={newOptions}
       styles={customStyles}
       required
     />

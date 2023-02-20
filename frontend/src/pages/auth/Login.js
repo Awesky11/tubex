@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Auth.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../../redux/hooks/useLogin";
 import { AlertMessage } from "../../components/common/Common";
 import Error from "../../assets/svgs/error.svg";
 import Cross from "../../assets/svgs/cross.svg";
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +14,8 @@ const Login = () => {
   });
 
   const { login, isLoading, error } = useLogin();
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,8 +28,7 @@ const Login = () => {
   };
 
   const handleClose = () => {
-    history.push("/");
-    history.go();
+    navigate("/");
   };
 
   return (

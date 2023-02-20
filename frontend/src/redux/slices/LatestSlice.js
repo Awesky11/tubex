@@ -15,11 +15,11 @@ const latestSlice = createSlice({
         const { type, response } = action.payload;
         //console.log(response);
         switch (type) {
-          case "SUCCESS":
+          case "LATEST_SUCCESS":
             return { ...state, latest: response, latestLoading: false };
-          case "ERROR":
+          case "LATEST_ERROR":
             return { ...state, latestError: response, latestLoading: false };
-          case "LOADING":
+          case "LATEST_LOADING":
             return { ...state, latestLoading: true };
           default:
             return state;

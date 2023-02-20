@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 
 import Ratio from "react-bootstrap/Ratio";
 import Play from "../../assets/svgs/play.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PosterBanner } from "../../components/poster/Poster";
 import Banner from "./Banner";
 import Heading from "./Heading";
@@ -16,16 +16,12 @@ import TopVideos from "./TopVideos";
 import FeatureVideos from "./FeatureVideos";
 import LatestVideos from "./LatestVideos";
 
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
-
 const Home = React.memo(() => {
   const store = useSelector((state) => state);
-
+  const navigate = useNavigate();
 
   const onClick = () => {
-    history.push("/viewall");
-    history.go();
+    navigate("/viewall");
   };
 
   return (

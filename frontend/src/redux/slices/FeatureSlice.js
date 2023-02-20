@@ -14,11 +14,11 @@ const featureSlice = createSlice({
       const { type, response } = action.payload;
       //console.log(response);
       switch (type) {
-        case "SUCCESS":
+        case "FEATURE_SUCCESS":
           return { ...state, feature: response, featureLoading: false };
-        case "ERROR":
+        case "FEATURE_ERROR":
           return { ...state, featureError: response, featureLoading: false };
-        case "LOADING":
+        case "FEATURE_LOADING":
           return { ...state, featureLoading: true };
         default:
           return state;
