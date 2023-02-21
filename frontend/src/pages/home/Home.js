@@ -5,19 +5,23 @@ import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
-import Ratio from "react-bootstrap/Ratio";
-import Play from "../../assets/svgs/play.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PosterBanner } from "../../components/poster/Poster";
 import Banner from "./Banner";
 import Heading from "./Heading";
-import TopVideos from "./TopVideos";
-import FeatureVideos from "./FeatureVideos";
-import LatestVideos from "./LatestVideos";
 
 const Home = React.memo(() => {
+  const categories = [
+    { title: "TOP VIDEOS", slug: "top" },
+    { title: "FEATURED", slug: "featured" },
+    { title: "LATEST HITS", slug: "latest" },
+    { title: "OTHERS", slug: "others" },
+  ];
+
   const store = useSelector((state) => state);
+  const videoList = store.videosStore.videos;
+  //console.log("HOME -> ", videoList);
+
   const navigate = useNavigate();
 
   const onClick = () => {
@@ -37,19 +41,33 @@ const Home = React.memo(() => {
             />
           </Col>
         </Row>
-        <br />
-        <Row>
-          <TopVideos />
-        </Row>
-        <br />
-        <Row>
-          <FeatureVideos />
-        </Row>
-        <br />
-        <Row>
-          <LatestVideos />
-        </Row>
-        <br />
+        <>
+          {categories.map((category, index) => (
+            <Container key={index}>
+              <br />
+              <br />
+              <Row>
+                <Heading title={category.title} />
+              </Row>
+              <br />
+              <Row className="top-video-grid">
+                {videoList
+                  .filter((video) =>
+                    video.category
+                      .toLowerCase()
+                      .includes(category.slug.toLowerCase())
+                  )
+                  .map((item, index) => {
+                    return (
+                      <Col key={index}>
+                        <Banner item={item} />
+                      </Col>
+                    );
+                  })}
+              </Row>
+            </Container>
+          ))}
+        </>
         <br />
         <Row>
           <Heading title={"SHOW ALL VIDEOS"} onClick={onClick} />

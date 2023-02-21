@@ -21,12 +21,13 @@ const AdminPanel = React.memo(() => {
     subtitle: "",
     thumb: "",
     title: "",
+    category: "",
   };
   const [formData, setFormData] = useState(initialFormState);
 
-  const [slug, setCatSlug] = useState("");
-
   const [showSuccess, setShowSuccess] = useState(false);
+
+  const [message, setMessage] = useState("");
 
   const { uploadVideo, isLoading, error } = useVideoUpload();
 
@@ -38,14 +39,15 @@ const AdminPanel = React.memo(() => {
   };
 
   const setSelectedOption = (category) => {
-    setCatSlug(category.value);
+    setFormData({ ...formData, category: category.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await uploadVideo(formData, slug);
+    const result = await uploadVideo(formData);
     if (result) {
       setShowSuccess(true);
+      setMessage(result.data.message);
       setTimeout(() => {
         setShowSuccess(false);
         // setFormData(initialFormState);
@@ -54,6 +56,8 @@ const AdminPanel = React.memo(() => {
   };
 
   const store = useSelector((state) => state);
+  const videoList = store.videosStore.videos;
+  //console.log("ADMIN -> ", videoList);
 
   const categories = [
     { title: "TOP VIDEOS", slug: "top" },
@@ -62,17 +66,35 @@ const AdminPanel = React.memo(() => {
     { title: "OTHERS", slug: "others" },
   ];
 
+  // const filteredVideos = videoList.filter((video) =>
+  //   video.category.toLowerCase().includes('top'.toLowerCase())
+  // );
+
   const handleClose = () => {
     navigate("/");
   };
-  const arr = [1, 2, 3, 4];
 
   return (
     <div className="admin-panel-container">
       <div>
-        {categories.map((item, index) => {
-          return <h1 key={index}>{item.label}</h1>;
-        })}
+        {categories.map((category, index) => (
+          <section key={index}>
+            <h1>{category.title}</h1>
+            <div className="video-grid">
+              {videoList
+                .filter((video) =>
+                  video.category
+                    .toLowerCase()
+                    .includes(category.slug.toLowerCase())
+                )
+                .map((video) => (
+                  <div className="video-card">
+                    <img src={video.thumb} alt={video.title} />
+                  </div>
+                ))}
+            </div>
+          </section>
+        ))}
       </div>
       <div className="admin-panel-center-container">
         <span className="span-img">
@@ -159,7 +181,7 @@ const AdminPanel = React.memo(() => {
           )}
           {!isLoading && !error && showSuccess && (
             <AlertMessage
-              message="Successfully Uploaded!"
+              message={message}
               variant={"success"}
               source={Success}
             />

@@ -3,13 +3,9 @@ const Schema = mongoose.Schema;
 
 const data = new Schema(
   {
-    description: {
+    title: {
       type: String,
-      required: [true, "Video description required!"],
-    },
-    source: {
-      type: String,
-      required: [true, "Video source url required!"],
+      required: [true, "Video title required!"],
     },
     subtitle: {
       type: String,
@@ -19,13 +15,17 @@ const data = new Schema(
       type: String,
       required: [true, "Video Thumbnail required!"],
     },
-    title: {
+    source: {
       type: String,
-      required: [true, "Video title required!"],
+      required: [true, "Video source url required!"],
     },
     category: {
       type: String,
       required: [true, "Video category required!"],
+    },
+    description: {
+      type: String,
+      required: [true, "Video description required!"],
     },
   },
   {

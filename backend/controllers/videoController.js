@@ -13,9 +13,20 @@ const setVideos = asyncHandler(async (req, res) => {
     return;
   }
 
-  const video = await VideoModel.create(req.body);
+  const { title, source, thumb, category } = req.body;
 
-  res.status(200).json(video);
+  const filter = { title: title, source: source, thumb: thumb, category: category };
+  const update = { $set: req.body };
+  const options = { upsert: true };
+
+  const updatedModel = await VideoModel.updateOne(filter, update, options);
+
+  if (updatedModel.upsertedId != null) {
+    const video = await VideoModel.findOne({ _id: updatedModel.upsertedId });
+    res.status(200).json(video);
+  } else {
+    res.status(200).json({ message: "This item already exist!" });
+  }
 });
 
 const updateVideo = asyncHandler(async (req, res) => {

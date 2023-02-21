@@ -6,7 +6,6 @@ const customStyles = {
     ...base,
     width: "80%",
     height: "42px",
-    marginLeft: "10px",
     marginTop: "10px",
   }),
 };

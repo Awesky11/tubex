@@ -1,15 +1,11 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
 
-import { topReducer } from "../slices/TopSlice";
-import { latestReducer } from "../slices/LatestSlice";
-import { featureReducer } from "../slices/FeatureSlice";
+import { videosReducer } from "../slices/VideosSlice";
 
 const store = configureStore({
   reducer: {
-    topStore: topReducer,
-    latestStore: latestReducer,
-    featureStore: featureReducer,
+    videosStore: videosReducer,
   },
 });
 

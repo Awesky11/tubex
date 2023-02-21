@@ -11,7 +11,7 @@ import Signup from "./pages/auth/Signup";
 import AdminPanel from "./pages/admin/AdminPanel";
 import Navbar from "./components/navbar/Navbar";
 
-import { fetchTopVideos, fetchFeatureVideos, fetchLatestVideos } from "./redux/actions/Actions";
+import { fetchVideos } from "./redux/actions/Actions";
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
@@ -38,9 +38,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTopVideos());
-    dispatch(fetchFeatureVideos());
-    dispatch(fetchLatestVideos());
+    dispatch(fetchVideos());
   }, [dispatch]);
 
   return (
